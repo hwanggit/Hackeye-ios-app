@@ -314,8 +314,8 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="User description asd asdf asdf asdf asdf asdf asdf asdf asdf adsf asdf asdf asdf asdf asdfa sdfa sdfa sdfa sdf" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYY-VN-X3T">
-                                                        <rect key="frame" x="108" y="16" width="250" height="145"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User description asd asdf asdf asdf asdf asdf asdf asdf asdf adsf asdf asdf asdf asdf asdfa sdfa sdfa sdfa sdf" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYY-VN-X3T">
+                                                        <rect key="frame" x="112" y="8" width="246" height="160"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
