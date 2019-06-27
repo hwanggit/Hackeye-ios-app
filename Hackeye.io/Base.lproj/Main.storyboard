@@ -188,6 +188,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="locationLabel" destination="Oal-3A-Ewd" id="wgz-dp-g8d"/>
+                                    <outlet property="markerImageView" destination="8AC-mp-B4J" id="4M1-bi-Sin"/>
+                                    <outlet property="projectImageView" destination="Jex-nQ-51e" id="DVQ-ez-63A"/>
+                                    <outlet property="projectNameLabel" destination="FkE-82-2dg" id="i07-A4-Fcg"/>
+                                    <outlet property="userImageView" destination="A9B-9C-GJo" id="wn6-47-QQr"/>
                                     <segue destination="gAu-d0-mIz" kind="show" id="XHa-eF-gUl"/>
                                 </connections>
                             </tableViewCell>
@@ -206,12 +211,12 @@
         <!--Title-->
         <scene sceneID="hyr-7b-0WL">
             <objects>
-                <viewController id="gAu-d0-mIz" sceneMemberID="viewController">
+                <viewController id="gAu-d0-mIz" customClass="DetailsProjectViewController" customModule="Hackeye" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FDb-lU-DX0"/>
                         <viewControllerLayoutGuide type="bottom" id="3sh-54-vLk"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="R1V-yA-ZPv">
+                    <view key="view" contentMode="scaleToFill" id="R1V-yA-ZPv" customClass="DetailsProjectView" customModule="Hackeye" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="64" width="375" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -377,6 +382,16 @@
                             <constraint firstItem="CcA-W9-BVd" firstAttribute="centerX" secondItem="xoj-RG-jom" secondAttribute="centerX" id="uog-Zd-eqB"/>
                             <constraint firstItem="3sh-54-vLk" firstAttribute="top" secondItem="pUp-l3-ifh" secondAttribute="bottom" id="xIt-Fl-Z1U"/>
                         </constraints>
+                        <connections>
+                            <outlet property="collectionView" destination="xoj-RG-jom" id="FhG-rE-M3u"/>
+                            <outlet property="commentsLabel" destination="edh-yE-KFm" id="oEI-0P-gkv"/>
+                            <outlet property="followersLabel" destination="3dy-Vk-jYC" id="PEE-Jr-HJt"/>
+                            <outlet property="mapView" destination="cbP-jI-Mah" id="rFN-oo-7Ga"/>
+                            <outlet property="pageControl" destination="CcA-W9-BVd" id="3Pk-Zf-HA6"/>
+                            <outlet property="projectDescription" destination="wYY-VN-X3T" id="2X9-fz-Qbw"/>
+                            <outlet property="skullsLabel" destination="ysW-1t-zrm" id="1EP-VP-nGd"/>
+                            <outlet property="viewsLabel" destination="svH-k1-pJf" id="eV6-uO-SyA"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="2oj-wm-z1A"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
