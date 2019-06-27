@@ -32,6 +32,14 @@ final class LocationService: NSObject {
     var status: CLAuthorizationStatus {
         return CLLocationManager.authorizationStatus()
     }
+    
+    func requestLocationAuthorization() {
+        manager.requestWhenInUseAuthorization()
+    }
+    
+    func getLocation() {
+        manager.requestLocation()
+    }
 }
 
 // Callback functions (Error case, update newest location, and echo status)

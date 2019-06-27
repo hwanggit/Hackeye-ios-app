@@ -3,24 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		150541DA22C4394A00E7230D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 150541D922C4394A00E7230D /* MapKit.framework */; };
-		150541DD22C4478A00E7230D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150541DC22C4478A00E7230D /* BaseView.swift */; };
-		150541E122C4490F00E7230D /* DetailsProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150541E022C4490F00E7230D /* DetailsProjectView.swift */; };
-		150541E322C44D6400E7230D /* DetailsProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150541E222C44D6400E7230D /* DetailsProjectViewController.swift */; };
-		150541E922C4565E00E7230D /* ProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150541E822C4565E00E7230D /* ProjectTableViewController.swift */; };
-		150541EB22C4573C00E7230D /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150541EA22C4573C00E7230D /* ProjectTableViewCell.swift */; };
-		150541EF22C45BAB00E7230D /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150541EE22C45BAB00E7230D /* LocationView.swift */; };
-		150541F122C45D0800E7230D /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150541F022C45D0800E7230D /* LocationViewController.swift */; };
-		150541F422C4650000E7230D /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150541F322C4650000E7230D /* LocationService.swift */; };
-		1544F0AF22C3E5EF00A07F0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544F0AE22C3E5EF00A07F0F /* AppDelegate.swift */; };
-		1544F0B122C3E5EF00A07F0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544F0B022C3E5EF00A07F0F /* ViewController.swift */; };
-		1544F0B422C3E5F000A07F0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1544F0B222C3E5F000A07F0F /* Main.storyboard */; };
+		150541FC22C4985D00E7230D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1544F0B222C3E5F000A07F0F /* Main.storyboard */; };
+		150541FD22C4985D00E7230D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1544F0B722C3E5F000A07F0F /* LaunchScreen.storyboard */; };
+		150541FE22C49F3F00E7230D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544F0AE22C3E5EF00A07F0F /* AppDelegate.swift */; };
+		150541FF22C49F3F00E7230D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544F0B022C3E5EF00A07F0F /* ViewController.swift */; };
 		1544F0B622C3E5F000A07F0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1544F0B522C3E5F000A07F0F /* Assets.xcassets */; };
-		1544F0B922C3E5F000A07F0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1544F0B722C3E5F000A07F0F /* LaunchScreen.storyboard */; };
 		1544F0C422C3E5F400A07F0F /* Hackeye_ioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544F0C322C3E5F400A07F0F /* Hackeye_ioTests.swift */; };
 		1544F0CF22C3E5F400A07F0F /* Hackeye_ioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544F0CE22C3E5F400A07F0F /* Hackeye_ioUITests.swift */; };
 /* End PBXBuildFile section */
@@ -316,7 +308,7 @@
 				};
 			};
 			buildConfigurationList = 1544F0A622C3E5EB00A07F0F /* Build configuration list for PBXProject "Hackeye" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -340,9 +332,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1544F0B922C3E5F000A07F0F /* LaunchScreen.storyboard in Resources */,
+				150541FC22C4985D00E7230D /* Main.storyboard in Resources */,
+				150541FD22C4985D00E7230D /* LaunchScreen.storyboard in Resources */,
 				1544F0B622C3E5F000A07F0F /* Assets.xcassets in Resources */,
-				1544F0B422C3E5F000A07F0F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,16 +359,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				150541E922C4565E00E7230D /* ProjectTableViewController.swift in Sources */,
-				150541EF22C45BAB00E7230D /* LocationView.swift in Sources */,
-				150541F422C4650000E7230D /* LocationService.swift in Sources */,
-				150541EB22C4573C00E7230D /* ProjectTableViewCell.swift in Sources */,
-				150541DD22C4478A00E7230D /* BaseView.swift in Sources */,
-				1544F0B122C3E5EF00A07F0F /* ViewController.swift in Sources */,
-				1544F0AF22C3E5EF00A07F0F /* AppDelegate.swift in Sources */,
-				150541F122C45D0800E7230D /* LocationViewController.swift in Sources */,
-				150541E322C44D6400E7230D /* DetailsProjectViewController.swift in Sources */,
-				150541E122C4490F00E7230D /* DetailsProjectView.swift in Sources */,
+				150541FE22C49F3F00E7230D /* AppDelegate.swift in Sources */,
+				150541FF22C49F3F00E7230D /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
