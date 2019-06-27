@@ -6,7 +6,7 @@ Meet up with Hardware Enthusiasts all over the world!
 ![alt](https://github.com/hwanggit/Hackeye-ios-app/blob/master/images/UIViews/LocationView.png)
 
 ## Step 2: Look for Projects
-![alt](https://github.com/hwanggit/Hackeye-ios-app/blob/master/images/UIViews/ProjectFeed.png)
+<img style="float: left" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/images/UIViews/ProjectFeed.png">
 
 ## Step 3: Collaborate!
-![alt](https://github.com/hwanggit/Hackeye-ios-app/blob/master/images/UIViews/DetailedView.png)
+<img style="float: left" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/images/UIViews/DetailedView.png">
