@@ -15,6 +15,7 @@
 		150541EB22C4573C00E7230D /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150541EA22C4573C00E7230D /* ProjectTableViewCell.swift */; };
 		150541EF22C45BAB00E7230D /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150541EE22C45BAB00E7230D /* LocationView.swift */; };
 		150541F122C45D0800E7230D /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150541F022C45D0800E7230D /* LocationViewController.swift */; };
+		150541F422C4650000E7230D /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150541F322C4650000E7230D /* LocationService.swift */; };
 		1544F0AF22C3E5EF00A07F0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544F0AE22C3E5EF00A07F0F /* AppDelegate.swift */; };
 		1544F0B122C3E5EF00A07F0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544F0B022C3E5EF00A07F0F /* ViewController.swift */; };
 		1544F0B422C3E5F000A07F0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1544F0B222C3E5F000A07F0F /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 		150541EA22C4573C00E7230D /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		150541EE22C45BAB00E7230D /* LocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		150541F022C45D0800E7230D /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		150541F322C4650000E7230D /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		1544F0AB22C3E5EF00A07F0F /* Hackeye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackeye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1544F0AE22C3E5EF00A07F0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1544F0B022C3E5EF00A07F0F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		150541F222C464E900E7230D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				150541F322C4650000E7230D /* LocationService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		1544F0A222C3E5EB00A07F0F = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +195,7 @@
 		1544F0AD22C3E5EF00A07F0F /* Hackeye.io */ = {
 			isa = PBXGroup;
 			children = (
+				150541F222C464E900E7230D /* Services */,
 				150541DB22C4471100E7230D /* Screen */,
 				1544F0AE22C3E5EF00A07F0F /* AppDelegate.swift */,
 				1544F0B022C3E5EF00A07F0F /* ViewController.swift */,
@@ -358,6 +369,7 @@
 			files = (
 				150541E922C4565E00E7230D /* ProjectTableViewController.swift in Sources */,
 				150541EF22C45BAB00E7230D /* LocationView.swift in Sources */,
+				150541F422C4650000E7230D /* LocationService.swift in Sources */,
 				150541EB22C4573C00E7230D /* ProjectTableViewCell.swift in Sources */,
 				150541DD22C4478A00E7230D /* BaseView.swift in Sources */,
 				1544F0B122C3E5EF00A07F0F /* ViewController.swift in Sources */,
