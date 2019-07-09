@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E03B7F222D469DC00FDD9BD /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E03B7F122D469DC00FDD9BD /* Models.swift */; };
 		1EBAEA4822D3C9FD004663F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBAEA4722D3C9FD004663F0 /* AppDelegate.swift */; };
 		1EBAEA4A22D3C9FD004663F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBAEA4922D3C9FD004663F0 /* ViewController.swift */; };
 		1EBAEA4D22D3C9FD004663F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EBAEA4B22D3C9FD004663F0 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E03B7F122D469DC00FDD9BD /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		1EBAEA4422D3C9FD004663F0 /* Hackeye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackeye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EBAEA4722D3C9FD004663F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EBAEA4922D3C9FD004663F0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			children = (
 				1EBAEA6522D3F9E3004663F0 /* Views */,
 				1EBAEA6322D3F9DB004663F0 /* ProjectTableViewController.swift */,
+				1E03B7F122D469DC00FDD9BD /* Models.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EBAEA7722D44CE0004663F0 /* NetworkService.swift in Sources */,
+				1E03B7F222D469DC00FDD9BD /* Models.swift in Sources */,
 				1EBAEA6422D3F9DB004663F0 /* ProjectTableViewController.swift in Sources */,
 				1EBAEA6B22D3FBF0004663F0 /* LocationView.swift in Sources */,
 				1EBAEA5B22D3F614004663F0 /* BaseView.swift in Sources */,

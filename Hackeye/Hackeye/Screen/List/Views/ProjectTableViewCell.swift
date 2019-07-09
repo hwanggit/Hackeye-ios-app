@@ -11,9 +11,8 @@ import UIKit
 class ProjectTableViewCell: UITableViewCell {
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var userProfile: UIImageView!
-    @IBOutlet weak var navigationMarker: UIImageView!
     @IBOutlet weak var projectNameLabel: UILabel!
-    @IBOutlet weak var navigationLabel: UILabel!
+    @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var projectSummary: UITextField!
     
     override func awakeFromNib() {

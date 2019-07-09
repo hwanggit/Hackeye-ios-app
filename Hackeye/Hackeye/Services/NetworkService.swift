@@ -25,7 +25,7 @@ class NetworkService {
     }
     
     // Create API URLs:
-    func setURL (_ objectType : String, _ perPage : Int, _ pgNum : Int, _ sortParam : String) {
+    func setURL (_ objectType : String, _ perPage : Int, _ pgNum : Int, _ sortParam : String) -> URL{
         
         let objectURL : String = apiUrl! + objectType
         let numPerPage : String = "&per_page=" + String(perPage)
@@ -34,25 +34,7 @@ class NetworkService {
         let finalUrl = objectURL + userKey! + pageNum + sort
         
         self.currUrl = URL(string: finalUrl)!
-    }
-    
-    // make requests, and return JSON object
-    func requestData() {
-        let task1 = URLSession.shared.dataTask(with: self.currUrl!) { (data, response, error) in
-            guard let responseData = data, error == nil else {
-                print(error?.localizedDescription ?? "Response Error")
-                return
-            }
-            
-            //parse data received from a network request
-            do {
-                let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: [])
-                print(jsonResponse)
-            }
-            catch let parsingError {
-                print("Error", parsingError)
-            }
-        }
-        task1.resume()
+        
+        return self.currUrl!
     }
 }

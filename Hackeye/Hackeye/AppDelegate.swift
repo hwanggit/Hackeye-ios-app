@@ -15,9 +15,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let locationService = LocationService()
     let networkService = NetworkService()
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let jsonDecoder = JSONDecoder()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // Set JsonDecoder to snakecase
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        // Get the current URL
+        let currentUrl = networkService.setURL("projects", 50, 1, "views")
+        
+        // Request data and parse URL
+        let task1 = URLSession.shared.dataTask(with: currentUrl) { (data, response, error) in
+            guard let responseData = data, error == nil else {
+                print(error?.localizedDescription ?? "Response Error")
+                return
+            }
+
+            //parse data received from a network request
+            do {
+                let root = try self.jsonDecoder.decode(Root.self, from: responseData)
+                // For reference - How to convert response to JSON object -> Array
+                // let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
+            
+                // Read out projects
+                // let jsonArray = jsonResponse!["projects"] as? [Any] ?? []
+
+            }
+            catch let err{
+                print("Error", err)
+            }
+        }
+        
+        // Run task
+        task1.resume()
+        
+        // If location is enabled, don't show locationView
         switch locationService.status {
         case .notDetermined, .denied, .restricted:
             let locationViewController = storyboard.instantiateViewController(withIdentifier: "LocationViewController") as? LocationViewController
@@ -28,8 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         window.makeKeyAndVisible()
         
-        networkService.setURL("projects", 50, 1, "views")
-        networkService.requestData()
         return true
     }
 }
