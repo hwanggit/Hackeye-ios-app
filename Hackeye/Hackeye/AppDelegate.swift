@@ -35,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //parse data received from a network request
             do {
                 let root = try self.jsonDecoder.decode(Root.self, from: responseData)
+                
+                let viewModels = root.projects.compactMap(ProjectListViewModel.init)
+                
                 // For reference - How to convert response to JSON object -> Array
                 // let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
             
@@ -49,6 +52,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Run task
         task1.resume()
+        
+        // Instantiate networkService and jsonDecoder
+        let networkService2 = NetworkService()
+        
+        // Get curr User id
+        let currUser = "users/1"
+        
+        // Get the current URL
+        let currentUrl2 = networkService2.setURL(currUser , 1, 1, "views")
+        
+        // Set profile image and label
+        let task2 = URLSession.shared.dataTask(with: currentUrl2) { (data, response, error) in
+            guard let responseData = data, error == nil else {
+                print(error?.localizedDescription ?? "Response Error")
+                return
+            }
+            
+            //parse data received from a network request
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: String]
+
+                // Read out projects
+                print(jsonResponse!)
+            
+            }
+            catch let err {
+                print("Error", err)
+            }
+        }
+        // Run task
+        task2.resume()
         
         // If location is enabled, don't show locationView
         switch locationService.status {

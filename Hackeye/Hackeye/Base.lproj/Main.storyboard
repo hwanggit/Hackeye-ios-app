@@ -118,7 +118,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Project Cell" rowHeight="327" id="8Du-zA-mES" customClass="ProjectTableViewCell" customModule="Hackeye" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" rowHeight="327" id="8Du-zA-mES" customClass="ProjectTableViewCell" customModule="Hackeye" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="327"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Du-zA-mES" id="sJC-fd-jES">
@@ -164,7 +164,7 @@
                                                 <constraint firstItem="lyg-je-M5v" firstAttribute="leading" secondItem="AC3-YI-DY2" secondAttribute="leading" constant="20" id="52a-kH-ZXZ"/>
                                                 <constraint firstItem="lyg-je-M5v" firstAttribute="top" secondItem="AC3-YI-DY2" secondAttribute="top" constant="200" id="Gwo-Dx-xia"/>
                                                 <constraint firstAttribute="trailing" secondItem="lyg-je-M5v" secondAttribute="trailing" constant="273" id="HL2-wh-0fX"/>
-                                                <constraint firstAttribute="trailing" secondItem="EMV-Ir-DGX" secondAttribute="trailing" constant="277" id="KYB-XO-PgM"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EMV-Ir-DGX" secondAttribute="trailing" symbolic="YES" id="KYB-XO-PgM"/>
                                                 <constraint firstItem="EMV-Ir-DGX" firstAttribute="top" secondItem="lyg-je-M5v" secondAttribute="bottom" constant="18" id="LpT-Ay-HME"/>
                                                 <constraint firstItem="RJd-hQ-GTH" firstAttribute="leading" secondItem="lyg-je-M5v" secondAttribute="trailing" constant="20" id="Nqf-E3-tRl"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="RJd-hQ-GTH" secondAttribute="trailing" constant="12" id="Pci-6I-rFf"/>
@@ -173,7 +173,7 @@
                                                 <constraint firstItem="EMV-Ir-DGX" firstAttribute="leading" secondItem="AC3-YI-DY2" secondAttribute="leading" constant="24" id="uEI-BM-mbS"/>
                                             </constraints>
                                         </view>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="LfV-Zv-lzQ">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="100" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="LfV-Zv-lzQ">
                                             <rect key="frame" x="16" y="11" width="343" height="181"/>
                                         </imageView>
                                     </subviews>
@@ -398,7 +398,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Yff-V1-vnW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="53f-3o-yxo" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProjectNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="53f-3o-yxo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="FD2-C8-iNx">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -424,5 +424,6 @@
         <image name="Skulls" width="105" height="109"/>
         <image name="Views" width="115" height="99"/>
         <image name="location-permission" width="1073" height="968"/>
+        <image name="placeholder" width="343" height="153"/>
     </resources>
 </document>
