@@ -12,6 +12,13 @@ struct Root: Codable {
     let projects: [Project]
 }
 
+struct User: Codable {
+    let location: String
+    let screenName: String
+    let url: String
+    let imageUrl: String
+}
+
 struct Project: Codable {
     let id: Int
     let url: String

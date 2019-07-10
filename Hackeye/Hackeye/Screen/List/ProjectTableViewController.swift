@@ -10,11 +10,15 @@ import UIKit
 
 class ProjectTableViewController: UITableViewController {
 
+    // Generate array of project list models
     var viewModels = [ProjectListViewModel]() {
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,8 +40,10 @@ class ProjectTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectTableViewCell
         
         let vm = viewModels[indexPath.row]
+        
         // Configure the cell...
-
+        cell.configure(with: vm)
+        
         return cell
     }
 

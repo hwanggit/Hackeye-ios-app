@@ -22,6 +22,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set JsonDecoder to snakecase
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         
+        // If location is enabled, don't show locationView
+        switch locationService.status {
+        case .notDetermined, .denied, .restricted:
+            let locationViewController = storyboard.instantiateViewController(withIdentifier: "LocationViewController") as? LocationViewController
+            locationViewController?.locationService = locationService
+            window.rootViewController = locationViewController
+        default:
+            // If already allowed location, load navigation page
+            let nav = storyboard.instantiateViewController(withIdentifier: "ProjectNavigationController") as? UINavigationController
+            window.rootViewController = nav
+            loadProjects()
+        }
+        window.makeKeyAndVisible()
+        
+        return true
+    }
+    
+    // Function to load project cell
+    private func loadProjects() {
         // Get the current URL
         let currentUrl = networkService.setURL("projects", 50, 1, "views")
         
@@ -31,19 +50,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(error?.localizedDescription ?? "Response Error")
                 return
             }
-
+            
             //parse data received from a network request
             do {
                 let root = try self.jsonDecoder.decode(Root.self, from: responseData)
                 
+                // Get array of view models
                 let viewModels = root.projects.compactMap(ProjectListViewModel.init)
                 
-                // For reference - How to convert response to JSON object -> Array
-                // let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
-            
-                // Read out projects
-                // let jsonArray = jsonResponse!["projects"] as? [Any] ?? []
-
+                // Reference navigation controller
+                DispatchQueue.main.async {
+                    if let nav = self.window.rootViewController as? UINavigationController,
+                        let projectListViewController = nav.topViewController as? ProjectTableViewController {
+                            projectListViewController.viewModels = viewModels
+                    }
+                }
             }
             catch let err{
                 print("Error", err)
@@ -52,50 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Run task
         task1.resume()
-        
-        // Instantiate networkService and jsonDecoder
-        let networkService2 = NetworkService()
-        
-        // Get curr User id
-        let currUser = "users/1"
-        
-        // Get the current URL
-        let currentUrl2 = networkService2.setURL(currUser , 1, 1, "views")
-        
-        // Set profile image and label
-        let task2 = URLSession.shared.dataTask(with: currentUrl2) { (data, response, error) in
-            guard let responseData = data, error == nil else {
-                print(error?.localizedDescription ?? "Response Error")
-                return
-            }
-            
-            //parse data received from a network request
-            do {
-                let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: String]
-
-                // Read out projects
-                print(jsonResponse!)
-            
-            }
-            catch let err {
-                print("Error", err)
-            }
-        }
-        // Run task
-        task2.resume()
-        
-        // If location is enabled, don't show locationView
-        switch locationService.status {
-        case .notDetermined, .denied, .restricted:
-            let locationViewController = storyboard.instantiateViewController(withIdentifier: "LocationViewController") as? LocationViewController
-            locationViewController?.locationService = locationService
-            window.rootViewController = locationViewController
-        default:
-            assertionFailure()
-        }
-        window.makeKeyAndVisible()
-        
-        return true
     }
 }
 
