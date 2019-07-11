@@ -10,6 +10,7 @@ import UIKit
 
 // Class defining single project cell in table
 class ProjectTableViewCell: UITableViewCell {
+    @IBOutlet weak var overlay: UIView!
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var userProfile: UIImageView!
     @IBOutlet weak var projectNameLabel: UILabel!
@@ -73,12 +74,16 @@ class ProjectTableViewCell: UITableViewCell {
         
         // Set project image
         projectImage.load(viewModel.imageUrl)
+        projectImage.layer.cornerRadius = 5
         
         // Set project name
         projectNameLabel.text = viewModel.name
         
         // Set project summary
         projectSummary.text = viewModel.summary
+        
+        // Give containerView a shadow
+        overlay.layer.cornerRadius = 5
     }
 }
 
