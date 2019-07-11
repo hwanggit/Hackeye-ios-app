@@ -16,6 +16,7 @@ class NetworkService {
     var apiUrl : String?
     var currUrl : URL?
     
+    // Initialize API Urls and Keys
     init() {
         self.clientId = "oPMf6Sam7tHN9sQp2VFiv58NV0xSu4ACLMOMJcp0AEmBkynP"
         self.clientSecret = "JVF24v3BmZNQAfR9Q2fxtm5GIEX8zPRyKGXKFyfkAWbIuYGi"
@@ -24,7 +25,7 @@ class NetworkService {
         self.currUrl = nil
     }
     
-    // Create API URLs:
+    // Create API URL from instance variables and parameters
     func setURL (_ objectType : String, _ perPage : Int, _ pgNum : Int, _ sortParam : String) -> URL{
         
         let objectURL : String = apiUrl! + objectType

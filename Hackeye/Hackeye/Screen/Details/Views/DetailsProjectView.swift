@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+// Details projectView instance class
 @IBDesignable class DetailsProjectView: BaseView {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -19,6 +20,7 @@ import MapKit
     @IBOutlet weak var projectDescription: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     
+    // 
     @IBAction func handleControl(_ sender: UIPageControl){
         
     }

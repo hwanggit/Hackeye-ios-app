@@ -8,10 +8,12 @@
 
 import Foundation
 
+// Root object to contain array of projects
 struct Root: Codable {
     let projects: [Project]
 }
 
+// User object
 struct User: Codable {
     let location: String
     let screenName: String
@@ -19,6 +21,7 @@ struct User: Codable {
     let imageUrl: String
 }
 
+// Project object
 struct Project: Codable {
     let id: Int
     let url: String
@@ -28,6 +31,7 @@ struct Project: Codable {
     let imageUrl: String
 }
 
+// Project list object
 struct ProjectListViewModel {
     let id: Int
     let url: String
@@ -37,6 +41,7 @@ struct ProjectListViewModel {
     let imageUrl: String
 }
 
+// Copy Constructor for project list object
 extension ProjectListViewModel {
     init(project: Project) {
         self.id = project.id

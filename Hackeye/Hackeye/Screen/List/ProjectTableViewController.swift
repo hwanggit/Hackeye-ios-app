@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Controller for project table
 class ProjectTableViewController: UITableViewController {
 
     // Generate array of project list models
@@ -31,14 +32,18 @@ class ProjectTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    // Set number of rows to the size of viewmodels array
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return viewModels.count
     }
 
+    // configure cell to display information from viewModels
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Instantiate tableview cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectTableViewCell
         
+        // Instantiate view models
         let vm = viewModels[indexPath.row]
         
         // Configure the cell...
@@ -91,5 +96,4 @@ class ProjectTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

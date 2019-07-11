@@ -8,10 +8,13 @@
 
 import UIKit
 
+// Controller for details view
 class DetailsProjectViewController: UIViewController {
     
+    // Details view instance
     @IBOutlet weak var detailsProjectView: DetailsProjectView!
     
+    // Function after loading successfully
     override func viewDidLoad() {
         super.viewDidLoad()
 

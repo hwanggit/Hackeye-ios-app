@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Class defining single project cell in table
 class ProjectTableViewCell: UITableViewCell {
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var userProfile: UIImageView!
@@ -26,7 +27,6 @@ class ProjectTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 
@@ -48,35 +48,21 @@ class ProjectTableViewCell: UITableViewCell {
                 return
             }
             
+            // Try to decode response data, and set user image, username
             do {
                 let user = try self.jsonDecoder.decode(User.self, from: responseData)
                 
+                // Load user image and screen name
+                self.userProfile.load(user.imageUrl)
+                
                 DispatchQueue.main.async {
-                    do {
-                        let url = URL(string: user.imageUrl)!
-                        let data = try Data(contentsOf: url)
-                        self.userProfile.image = UIImage(data: data)
-                        
-                        // Round image
-                        self.userProfile.layer.cornerRadius = self.userProfile.frame.size.width / 2
-                        self.userProfile.clipsToBounds = true
-                        
-                        self.userLabel.text = user.screenName
-                    }
-                    catch{
-                        print("Could not upload user image.")
-                    }
+                    self.userLabel.text = user.screenName
                 }
                 
                 // For reference - How to convert response to JSON object -> Array
-                /* let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
-                
-                print(jsonResponse!)
-                
-                
-                // Read out projects
+                // let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
                 // let jsonArray = jsonResponse!["projects"] as? [Any] ?? []
-                */
+ 
             }
             catch let err{
                 print("Error", err)
@@ -86,14 +72,7 @@ class ProjectTableViewCell: UITableViewCell {
         task2.resume()
         
         // Set project image
-        do {
-            let url = URL(string: viewModel.imageUrl)!
-            let data = try Data(contentsOf: url)
-            self.projectImage.image = UIImage(data: data)
-        }
-        catch{
-            print("Could not upload project image.")
-        }
+        projectImage.load(viewModel.imageUrl)
         
         // Set project name
         projectNameLabel.text = viewModel.name

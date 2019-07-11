@@ -11,12 +11,18 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    // Define constant window
     let window = UIWindow()
+    
+    // Define location and network services
     let locationService = LocationService()
     let networkService = NetworkService()
+    
+    // Define storyboard and jsonDecoder
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let jsonDecoder = JSONDecoder()
     
+    // Function called after successful application launch
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Set JsonDecoder to snakecase
@@ -28,19 +34,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let locationViewController = storyboard.instantiateViewController(withIdentifier: "LocationViewController") as? LocationViewController
             locationViewController?.locationService = locationService
             window.rootViewController = locationViewController
+            
         default:
             // If already allowed location, load navigation page
             let nav = storyboard.instantiateViewController(withIdentifier: "ProjectNavigationController") as? UINavigationController
             window.rootViewController = nav
             loadProjects()
         }
+        // Make window visible
         window.makeKeyAndVisible()
         
         return true
     }
     
     // Function to load project cell
-    private func loadProjects() {
+    public func loadProjects() {
         // Get the current URL
         let currentUrl = networkService.setURL("projects", 50, 1, "views")
         
@@ -75,4 +83,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         task1.resume()
     }
 }
-
