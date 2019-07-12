@@ -44,6 +44,12 @@ final class LocationService: NSObject {
     func getLocation() {
         manager.requestLocation()
     }
+    
+    // Function to get filepath url
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
 }
 
 // Extend CLLocationManager to define error, update and change authorization cases
@@ -57,6 +63,22 @@ extension LocationService: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.sorted(by: {$0.timestamp > $1.timestamp}).first {
             newLocation?(.success(location))
+            // Get latitude and longitude
+            let latitude: String = String(location.coordinate.latitude)
+            let longitude: String = String(location.coordinate.longitude)
+            
+            // Specify filepath
+            let filePathLat = self.getDocumentsDirectory().appendingPathComponent("latitude.txt")
+            let filePathLng = self.getDocumentsDirectory().appendingPathComponent("longitude.txt")
+            
+            // Write both coordinates to file, separated by space
+            do {
+                try latitude.write(to: filePathLat, atomically: true, encoding: String.Encoding.utf8)
+                try longitude.write(to: filePathLng, atomically: true, encoding: String.Encoding.utf8)
+            }
+            catch {
+                print("Failed to write coordinates!")
+            }
         }
     }
     

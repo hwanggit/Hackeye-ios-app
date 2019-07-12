@@ -26,15 +26,18 @@ class LocationViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let nav = storyboard.instantiateViewController(withIdentifier: "ProjectNavigationController") as? UINavigationController
         
+        // Define variables to store latitude and longitude ("na" by default)
+        var latitude : String = "na"
+        var longitude : String = "na"
+        
         // Define didTapAllow 
         locationView.didTapAllow = { [weak self] in
             self?.locationService?.requestLocationAuthorization()
         }
         
-        // Define didTapDeny (Transition to navigation view)
+        // Define didTapDeny
         locationView.didTapDeny = { [weak self] in
-            appDelegate.window.rootViewController = nav
-            appDelegate.loadProjects()
+            self?.locationService?.didChangeStatus!(false)
         }
         
         // If status changed to enabled, request user location
@@ -42,17 +45,24 @@ class LocationViewController: UIViewController {
             if success {
                 self?.locationService?.getLocation()
             }
+            else {
+                // Switch to navigation view and load projects
+                appDelegate.window.rootViewController = nav
+                appDelegate.loadProjects(latitude, longitude)
+            }
         }
         
         // Get new location and print out, then change to navigation view
         locationService?.newLocation = { [weak self] result in
             switch result {
             case .success(let location):
-                print(location)
+                // Set latitude and longitude
+                latitude = String(location.coordinate.latitude)
+                longitude = String(location.coordinate.longitude)
                 
                 // Switch to navigation view and load projects
                 appDelegate.window.rootViewController = nav
-                appDelegate.loadProjects()
+                appDelegate.loadProjects(latitude, longitude)
                 
             case .failure(let error):
                 assertionFailure("Error getting the users location \(error)")

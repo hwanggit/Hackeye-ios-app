@@ -20,7 +20,6 @@ import MapKit
     @IBOutlet weak var projectDescription: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     
-    // 
     @IBAction func handleControl(_ sender: UIPageControl){
         
     }

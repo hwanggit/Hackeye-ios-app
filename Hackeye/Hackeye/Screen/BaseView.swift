@@ -10,7 +10,7 @@ import UIKit
 
 // UIView instance, acts as superclass to all views
 @IBDesignable class BaseView: UIView {
-    
+
     // Initialize UIView
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,6 +25,6 @@ import UIKit
     
     // Configure UIView
     func configure() {
-        
+
     }
 }

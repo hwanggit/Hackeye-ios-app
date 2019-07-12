@@ -15,6 +15,8 @@ class NetworkService {
     var userKey : String?
     var apiUrl : String?
     var currUrl : URL?
+    var openCageDataUrl: String?
+    var openCageDataApiKey: String?
     
     // Initialize API Urls and Keys
     init() {
@@ -23,19 +25,36 @@ class NetworkService {
         self.userKey = "?api_key=hscFz8Qque9ABbEF"
         self.apiUrl = "https://api.hackaday.io/v1/"
         self.currUrl = nil
+        self.openCageDataUrl = "https://api.opencagedata.com/geocode/v1/json?q="
+        self.openCageDataApiKey = "&key=31c06f4c23b04557898dd61bc14974b1&language=en&pretty=1"
     }
     
-    // Create API URL from instance variables and parameters
-    func setURL (_ objectType : String, _ perPage : Int, _ pgNum : Int, _ sortParam : String) -> URL{
+    // Create Hackaday API URL from instance variables and parameters
+    func setHackADayURL (_ objectType : String, _ perPage : Int, _ pgNum : Int, _ sortParam : String) -> URL{
         
         let objectURL : String = apiUrl! + objectType
         let numPerPage : String = "&per_page=" + String(perPage)
         let pageNum : String = numPerPage + "&page=" + String(pgNum)
         let sort : String = "&sortby=" + sortParam
         let finalUrl = objectURL + userKey! + pageNum + sort
-        
         self.currUrl = URL(string: finalUrl)!
         
         return self.currUrl!
     }
+    
+    // Create openCageData API Url to geocode locations
+    func setOpenCageDataUrl (_ location: String) -> URL? {
+        // Parse location parameter, and replace ", " with %2C%20
+        var parsedLocation = location.replacingOccurrences(of: ",", with: "%2C")
+        parsedLocation = parsedLocation.replacingOccurrences(of: " ", with: "%20")
+
+        // Construct location URL
+        let locationURL = openCageDataUrl! + parsedLocation + openCageDataApiKey!
+
+        // Set current URL
+        self.currUrl = URL(string: locationURL)
+        
+        return self.currUrl
+    }
+    
 }
