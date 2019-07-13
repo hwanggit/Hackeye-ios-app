@@ -26,7 +26,7 @@ class NetworkService {
         self.apiUrl = "https://api.hackaday.io/v1/"
         self.currUrl = nil
         self.openCageDataUrl = "https://api.opencagedata.com/geocode/v1/json?q="
-        self.openCageDataApiKey = "&key=31c06f4c23b04557898dd61bc14974b1&language=en&pretty=1"
+        self.openCageDataApiKey = "&key=9005e9fb50d34eb5a0a6bb2a827615a2&language=en&pretty=1"
     }
     
     // Create Hackaday API URL from instance variables and parameters
@@ -50,7 +50,7 @@ class NetworkService {
 
         // Construct location URL
         let locationURL = openCageDataUrl! + parsedLocation + openCageDataApiKey!
-
+        
         // Set current URL
         self.currUrl = URL(string: locationURL)
         

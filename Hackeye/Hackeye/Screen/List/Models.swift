@@ -10,7 +10,6 @@ import Foundation
 
 // Root object to contain array of projects
 struct Root: Codable {
-    let lastPage: Int
     var projects: [Project]
 }
 
@@ -22,6 +21,16 @@ struct User: Codable {
     let imageUrl: String
 }
 
+// ImageObject
+struct ImageObject: Codable {
+    let images: [Image]
+}
+
+// Single Image
+struct Image: Codable {
+    let url: String
+}
+
 // Project object
 struct Project: Codable {
     let id: Int
@@ -29,7 +38,13 @@ struct Project: Codable {
     let name: String
     let ownerId: Int
     let summary: String
+    let description : String
+    let views : Int
+    let comments: Int
+    let followers: Int
+    let skulls: Int
     let imageUrl: String?
+    let images: Int
 }
 
 // Project list object
@@ -39,7 +54,13 @@ struct ProjectListViewModel {
     let name: String
     let ownerId: Int
     let summary: String
+    let description : String
+    let views : Int
+    let comments: Int
+    let followers: Int
+    let skulls: Int
     let imageUrl: String?
+    let images: Int
 }
 
 // Copy Constructor for project list object
@@ -50,6 +71,12 @@ extension ProjectListViewModel {
         self.name = project.name
         self.ownerId = project.ownerId
         self.summary = project.summary
+        self.description = project.description
+        self.views = project.views
+        self.comments = project.comments
+        self.followers = project.followers
+        self.skulls = project.skulls
         self.imageUrl = project.imageUrl
+        self.images = project.images
     }
 }

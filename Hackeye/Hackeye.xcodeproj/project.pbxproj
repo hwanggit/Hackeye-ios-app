@@ -23,6 +23,7 @@
 		1EBAEA7022D3FF81004663F0 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBAEA6F22D3FF81004663F0 /* LocationService.swift */; };
 		1EBAEA7322D43019004663F0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBAEA7222D43019004663F0 /* MapKit.framework */; };
 		1EBAEA7722D44CE0004663F0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBAEA7622D44CE0004663F0 /* NetworkService.swift */; };
+		1ED0A6E422D98EE5006655DF /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED0A6E322D98EE5006655DF /* DetailsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		1EBAEA6F22D3FF81004663F0 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		1EBAEA7222D43019004663F0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1EBAEA7622D44CE0004663F0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		1ED0A6E322D98EE5006655DF /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				1EBAEA5E22D3F711004663F0 /* DetailsProjectView.swift */,
+				1ED0A6E322D98EE5006655DF /* DetailsCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				1EBAEA4822D3C9FD004663F0 /* AppDelegate.swift in Sources */,
 				1EBAEA6122D3F94B004663F0 /* DetailsProjectViewController.swift in Sources */,
 				1EBAEA6D22D3FC76004663F0 /* LocationViewController.swift in Sources */,
+				1ED0A6E422D98EE5006655DF /* DetailsCollectionViewCell.swift in Sources */,
 				1EBAEA6722D3F9FB004663F0 /* ProjectTableViewCell.swift in Sources */,
 				1EBAEA7022D3FF81004663F0 /* LocationService.swift in Sources */,
 				1EBAEA5F22D3F711004663F0 /* DetailsProjectView.swift in Sources */,

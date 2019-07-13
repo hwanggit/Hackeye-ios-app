@@ -7,19 +7,24 @@
 //
 
 import UIKit
+import CoreLocation
+
+// Action protocol for generating details
+protocol ListActions: class {
+    func didTapCell(_ viewModel: ProjectListViewModel)
+}
 
 // Controller for project table
 class ProjectTableViewController: UITableViewController {
 
     // Generate array of project list models
-    var viewModels = [ProjectListViewModel]() {
-        didSet {
-            DispatchQueue.main.async {
-                    // Reload data with delay
-                self.perform(#selector(self.reloadData), with: nil, afterDelay: 1.5)
-            }
-        }
-    }
+    var viewModels = [ProjectListViewModel]()
+    
+    // Generate array of users
+    var UserPop = [User]()
+    
+    // Locations
+    var UserLocations = [CLLocationCoordinate2D?]()
     
     // Coordinates
     var currLatitude : String?
@@ -31,6 +36,9 @@ class ProjectTableViewController: UITableViewController {
     
     // Index to load more projects
     var cellIndex : Int = 1
+    
+    // Notify tap cell
+    weak var delegate: ListActions?
     
     // Function after view loads
     override func viewDidLoad() {
@@ -53,12 +61,16 @@ class ProjectTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Instantiate tableview cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectTableViewCell
-        
+
         // Instantiate view models
         let vm = viewModels[indexPath.row]
+
+        // Instantiate Users and location
+        let currUser = UserPop[indexPath.row]
+        let currLocation = UserLocations[indexPath.row]
         
         // Configure the cell...
-        cell.configure(with: vm, self.currLatitude!, self.currLongitude!)
+        cell.configure(vm, currUser, currLocation, self.currLatitude!, self.currLongitude!)
         
         return cell
     }
@@ -79,7 +91,7 @@ class ProjectTableViewController: UITableViewController {
                 let currentUrl = self.networkService.setHackADayURL("projects", 50, self.cellIndex, "views")
                 
                 // Request data and parse URL
-                let task1 = URLSession.shared.dataTask(with: currentUrl) { (data, response, error) in
+                let task = URLSession.shared.dataTask(with: currentUrl) { (data, response, error) in
                     guard let responseData = data, error == nil else {
                           print(error?.localizedDescription ?? "Response Error")
                             return
@@ -102,16 +114,20 @@ class ProjectTableViewController: UITableViewController {
                 }
 
                 // Run task
-                task1.resume()
+                task.resume()
             }
             // Increment index
             self.cellIndex = self.cellIndex + 1
         }
     }
 
-    
+    // Call function on click
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Get current project
+        let currProject = viewModels[indexPath.row]
         
+        // Set currProject
+        delegate?.didTapCell(currProject)
     }
     
     // Manual Reload data
