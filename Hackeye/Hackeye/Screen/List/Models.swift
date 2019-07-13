@@ -10,9 +10,7 @@ import Foundation
 
 // Root object to contain array of projects
 struct Root: Codable {
-    let total: Int
     let lastPage: Int
-    let page: Int
     var projects: [Project]
 }
 

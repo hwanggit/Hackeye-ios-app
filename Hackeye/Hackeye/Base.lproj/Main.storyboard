@@ -183,6 +183,9 @@
                                                     <state key="normal">
                                                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="openURLWithSender:" destination="8Du-zA-mES" eventType="touchUpInside" id="r9p-wk-a8E"/>
+                                                    </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3Ic-nQ-yfI">
                                                     <rect key="frame" x="298" y="250" width="45" height="59"/>
@@ -282,7 +285,6 @@
                                     <outlet property="projectSummary" destination="fys-aC-sVu" id="VI6-wA-CgP"/>
                                     <outlet property="userLabel" destination="EMV-Ir-DGX" id="ybE-re-xZp"/>
                                     <outlet property="userProfile" destination="lyg-je-M5v" id="h7h-tI-424"/>
-                                    <segue destination="zzo-TO-u2L" kind="show" id="95c-bl-4zj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -306,7 +308,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ARt-oW-P2F">
-                                <rect key="frame" x="0.0" y="64" width="375" height="960"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="1004"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4R1-qX-Ha2">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="960"/>
@@ -450,7 +452,7 @@
                                 </constraints>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="i7P-ky-Oj8">
-                                <rect key="frame" x="168" y="277" width="39" height="37"/>
+                                <rect key="frame" x="168" y="233" width="39" height="37"/>
                                 <color key="pageIndicatorTintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </pageControl>

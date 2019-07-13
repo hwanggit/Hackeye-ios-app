@@ -15,7 +15,8 @@ class ProjectTableViewController: UITableViewController {
     var viewModels = [ProjectListViewModel]() {
         didSet {
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                    // Reload data with delay
+                self.perform(#selector(self.reloadData), with: nil, afterDelay: 1.5)
             }
         }
     }
@@ -29,7 +30,7 @@ class ProjectTableViewController: UITableViewController {
     let networkService = NetworkService()
     
     // Index to load more projects
-    var index = 1
+    var cellIndex : Int = 1
     
     // Function after view loads
     override func viewDidLoad() {
@@ -64,25 +65,26 @@ class ProjectTableViewController: UITableViewController {
     
     // Display future cells
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
         // Set JsonDecoder to snakecase
         self.jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         
         // Check if reached last cell
-        if indexPath.row == viewModels.count - 1{
-            
-            print(self.index)
+        if indexPath.row == viewModels.count - 1 {
             
             // Get more if index is greater than 1
-            if self.index > 1 {
+            if self.cellIndex > 1 {
+                
                 // Get the current URL
-                let currentUrl = self.networkService.setHackADayURL("projects", 51, 2, "views")
-
+                let currentUrl = self.networkService.setHackADayURL("projects", 50, self.cellIndex, "views")
+                
                 // Request data and parse URL
                 let task1 = URLSession.shared.dataTask(with: currentUrl) { (data, response, error) in
-                guard let responseData = data, error == nil else {
-                      print(error?.localizedDescription ?? "Response Error")
-                        return
-                }
+                    guard let responseData = data, error == nil else {
+                          print(error?.localizedDescription ?? "Response Error")
+                            return
+                    }
+                    
                     //parse data received from a network request
                     do {
                         // Code Root with JSONDecoder
@@ -93,7 +95,6 @@ class ProjectTableViewController: UITableViewController {
 
                         // Initialize projectListViewController
                         self.viewModels.append(contentsOf: viewModels)
-
                     }
                     catch let err{
                         print("Error", err)
@@ -104,60 +105,17 @@ class ProjectTableViewController: UITableViewController {
                 task1.resume()
             }
             // Increment index
-            self.index = self.index + 1
+            self.cellIndex = self.cellIndex + 1
         }
+    }
 
-        // Delay reload
-        self.perform(#selector(loadTable), with: nil, afterDelay: 2.0)
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
-    // Reload table
-    @objc func loadTable() {
+    // Manual Reload data
+    @objc func reloadData() {
         self.tableView.reloadData()
     }
 }
-
-/*
-// Override to support conditional editing of the table view.
-override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    // Return false if you do not want the specified item to be editable.
-    return true
-}
-*/
-
-/*
-// Override to support editing the table view.
-override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    if editingStyle == .delete {
-        // Delete the row from the data source
-        tableView.deleteRows(at: [indexPath], with: .fade)
-    } else if editingStyle == .insert {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-    // Return false if you do not want the item to be re-orderable.
-    return true
-}
-*/
-
-/*
-// MARK: - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    // Get the new view controller using segue.destination.
-    // Pass the selected object to the new view controller.
-}
-*/

@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let projectListViewController = nav.topViewController as? ProjectTableViewController {
 
             // Get the current URL
-            let currentUrl = self.networkService.setHackADayURL("projects", 5, 1, "views")
+            let currentUrl = self.networkService.setHackADayURL("projects", 50, 1, "views")
             
             // Request data and parse URL
             let task1 = URLSession.shared.dataTask(with: currentUrl) { (data, response, error) in

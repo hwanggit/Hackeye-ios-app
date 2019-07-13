@@ -19,6 +19,9 @@ class ProjectTableViewCell: UITableViewCell {
     @IBOutlet weak var projectSummary: UILabel!
     @IBOutlet weak var projectDist: UILabel!
     
+    // Set user profile link
+    var userLink: String?
+    
     // Instantiate networkService and jsonDecoder
     let networkService2 = NetworkService()
     let jsonDecoder = JSONDecoder()
@@ -33,6 +36,12 @@ class ProjectTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    // Add open link function to image
+    @IBAction func openURL(sender: UIButton) {
+        guard let url = URL(string: self.userLink!) else { return }
+        UIApplication.shared.open(url)
+    }
+    
     // Configure views and fill them
     func configure(with viewModel: ProjectListViewModel, _ latitude: String, _ longitude: String) {
         // Set JsonDecoder to snakecase
@@ -61,6 +70,9 @@ class ProjectTableViewCell: UITableViewCell {
                 DispatchQueue.main.async {
                     self.userLabel.text = user.screenName.capitalizingFirstLetter()
                 }
+                
+                // Set user link member var
+                self.userLink = user.url
                 
                 // Get url for openGateData
                 guard let currentUrl3 = self.networkService2.setOpenCageDataUrl(user.location) else {
@@ -105,9 +117,10 @@ class ProjectTableViewCell: UITableViewCell {
                         let distance = self.getDistance(latDbl!, lngDbl!, lat, lng)
                         
                         // Set distance label
-                        let distInKm = String(Int(distance)) + " km"
-                        self.projectDist.text = distInKm
-                        
+                        DispatchQueue.main.async {
+                            let distInKm = String(Int(distance)) + " km"
+                            self.projectDist.text = distInKm
+                        }
                     }
                     catch let err{
                         print("Error", err)
