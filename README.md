@@ -1,4 +1,5 @@
-# Meet up with Hardware Enthusiasts all over the world!
+# Hackeye.io iPhone App 
+Find hardware enthusiasts and projects to collaborate on all over the world!
 
 ### Step 1: Authorize your location
 <img style="float: left" height = "500" width = "300" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationpermission.png">
