@@ -3,8 +3,8 @@ Find hardware enthusiasts and projects to collaborate on all over the globe!
 
 ### Step 1: Authorize your location
 <figure class="half">
-    <img height = "667" width = "375" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationallow.png">
-    <img height = "667" width = "375" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationallow.png">
+   <a href="/assets/images/image-filename-1-large.jpg"><img height = "667" width = "375" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationallow.png"></a>
+       <a href="/assets/images/image-filename-1-large.jpg"><img height = "667" width = "375" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationallow.png"></a>
 </figure>
 
 ## Step 2: Look for Projects
