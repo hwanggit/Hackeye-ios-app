@@ -9,7 +9,7 @@ Find hardware enthusiasts and projects to collaborate on all over the globe!
 
 ## Step 2: Look for Projects
 <figure class="half">
-   <a href="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/projectfeed.png"><img height = "667" width = "375" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/projectfeed.png"></a>
+   <a href="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/ProjectFeed.png"><img height = "667" width = "375" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/ProjectFeed.png"></a>
    <a href="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/projectfeed2.png"><img height = "667" width = "375" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/projectfeed2.png"></a>
 </figure>
 
