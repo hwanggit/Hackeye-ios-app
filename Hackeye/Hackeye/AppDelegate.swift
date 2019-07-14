@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Foundation
 import CoreLocation
 
 @UIApplicationMain
@@ -89,8 +88,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // Function to load project details
-    public func loadDetails(_ viewModel: ProjectListViewModel) {
+    public func loadDetails(_ viewModel: ProjectListViewModel, _ currLocation: CLLocationCoordinate2D?) {
         (self.navigationController?.topViewController as? DetailsProjectViewController)?.currProject = viewModel
+        (self.navigationController?.topViewController as? DetailsProjectViewController)?.currCoordinate = currLocation
+        (self.navigationController?.topViewController as? DetailsProjectViewController)?.userLatitude = currLatitude
+        (self.navigationController?.topViewController as? DetailsProjectViewController)?.userLatitude = currLongitude
     }
     
     // Function to load project cell
@@ -119,16 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     // Initialize projectListViewController
                     projectListViewController.viewModels = viewModels
-                    
-                    // For each project, call get user and location, then set instance of projectlistViewcontroller
-                    for i in 0...viewModels.count - 1 {
-                        self.LoadUsersAndLocations(viewModels[i], projectListViewController)
-                        if i == viewModels.count - 1 {
-                            projectListViewController.reloadData()
-                        }
-                    }
                 }
-                // Catch parsing error
                 catch let err{
                     print("Error", err)
                 }
@@ -144,89 +137,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.currLongitude = longitude
         }
     }
-    
-    // Function to generate array of users and location
-    func LoadUsersAndLocations(_ currProject: ProjectListViewModel, _ ListViewController: ProjectTableViewController) {
-        // Get curr User id
-        let currUser = "users/" + String(currProject.ownerId)
-        
-        // Get the current URL
-        let currentUrl = self.networkService.setHackADayURL(currUser , 1, 1, "views")
-        
-        // Set profile image and label
-        let task2 = URLSession.shared.dataTask(with: currentUrl) { (data, response, error) in
-            guard let responseDataUser = data, error == nil else {
-                print(error?.localizedDescription ?? "Response Error")
-                return
-            }
-            
-            // Try to decode response data, and set user image, username
-            do {
-                let user = try self.jsonDecoder.decode(User.self, from: responseDataUser)
-                
-                // Append user array
-                ListViewController.UserPop.append(user)
-                
-                // Get url for openGateData
-                guard let locationUrl = self.networkService.setOpenCageDataUrl(user.location) else {
-                    return
-                }
-
-                // Get user location via openCageData
-                let task3 = URLSession.shared.dataTask(with: locationUrl) { (data, response, error) in
-                    guard let responseDataLocation = data, error == nil else {
-                        print(error?.localizedDescription ?? "Response Error")
-                        return
-                    }
-                    
-                    // Serialize response
-                    do {
-                        // Convert response to parsable object
-                        let jsonResponse = try JSONSerialization.jsonObject(with: responseDataLocation, options: []) as? [String: Any]
-                        let jsonArray = jsonResponse!["results"] as? [Any] ?? []
-                        
-                        // If array empty, append nil
-                        if jsonArray.isEmpty {
-                            // Set member of table conroller
-                            ListViewController.UserLocations.append(nil)
-                            return
-                        }
-                        
-                        // Otherwise convert to object
-                        let jsonObject = jsonArray[0] as? [String : Any] ?? [:]
-                        let geometry = jsonObject["geometry"] as? [String : Double] ?? [:]
-                        
-                        // Get latitude and longitude
-                        let lat = geometry["lat"]!
-                        let lng = geometry["lng"]!
-                        
-                        // Convert to CLLocationCoordinates
-                        let currCoord = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-                        
-                        // Set member of table conroller
-                        ListViewController.UserLocations.append(currCoord)
-                    }
-                    catch let err{
-                        print("Error", err)
-                        
-                    }
-                }
-                // Run task 3
-                task3.resume()
-            }
-            // Catch error
-            catch let err{
-                print("Error", err)
-            }
-        }
-        // Run task 2
-        task2.resume()
-    }
 }
 
 // Handle tap cell
 extension AppDelegate: ListActions {
-    func didTapCell(_ viewModel: ProjectListViewModel) {
-        loadDetails(viewModel)
+    func didTapCell(_ viewModel: ProjectListViewModel, _ currLocation: CLLocationCoordinate2D?) {
+        loadDetails(viewModel, currLocation)
     }
 }

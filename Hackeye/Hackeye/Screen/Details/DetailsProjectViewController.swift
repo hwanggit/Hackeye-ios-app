@@ -27,6 +27,11 @@ class DetailsProjectViewController: UIViewController {
         }
     }
     
+    // Curr location
+    var currCoordinate : CLLocationCoordinate2D?
+    var userLatitude: String?
+    var userLongitude : String?
+    
     // Array of image urls
     var imageArr = [String]()
     
@@ -82,7 +87,7 @@ class DetailsProjectViewController: UIViewController {
         }
         
         // fill map view
-        setMapMark("32.5", "-122.0")
+        setMapMark(self.currCoordinate, currProject)
     }
     
     // Set image array
@@ -123,28 +128,31 @@ class DetailsProjectViewController: UIViewController {
     }
     
     // Set map marker
-    func setMapMark(_ latitude : String, _ longitude : String) {
+    func setMapMark(_ currCoord: CLLocationCoordinate2D?, _ currProject : ProjectListViewModel) {
+        
+        // Set user location if not equal to na
+        if self.userLatitude != "na" && self.userLongitude != "na" {
+            detailsProjectView?.mapView?.showsUserLocation = true
+        }
+        else {
+            detailsProjectView?.mapView?.showsUserLocation = false
+        }
         
         // Convert coordinates
-        let CLLatitude =  CLLocationDegrees(Double(latitude)!)
-        let CLLongitude =  CLLocationDegrees(Double(longitude)!)
-        let center = CLLocationCoordinate2D(latitude: CLLatitude, longitude: CLLongitude)
-        let yourLocation = MKPointAnnotation()
-        yourLocation.coordinate = center
+        guard let currLocation = currCoord else {
+            return
+        }
         
-        // Check if equal to na
-     //   if latitude != "na" && longitude != "na" {
+        // Set annotation for project location
+        let projectAnnotation = MKPointAnnotation()
+        projectAnnotation.title = currProject.name.capitalizingFirstLetter()
+        projectAnnotation.coordinate = currLocation
 
-            detailsProjectView?.mapView?.addAnnotation(yourLocation)
-       // }
-        
         // Annotate coordinate region
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: 100, longitudinalMeters: 100)
-//        let annotation = MKPointAnnotation()
-//        annotation.coordinate = center
-
-        // Set mapview region
-//        detailsProjectView?.mapView?.addAnnotation(annotation)
+        let region = MKCoordinateRegion(center: currLocation, latitudinalMeters: 600000, longitudinalMeters: 600000)
+        
+        // set region on map and add annotation
+        detailsProjectView?.mapView?.addAnnotation(projectAnnotation)
         detailsProjectView?.mapView?.setRegion(region, animated: true)
     }
 }

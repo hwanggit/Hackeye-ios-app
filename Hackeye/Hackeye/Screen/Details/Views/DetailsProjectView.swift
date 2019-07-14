@@ -19,9 +19,5 @@ import MapKit
     @IBOutlet weak var commentsLabel: UILabel?
     @IBOutlet weak var projectDescription: UILabel?
     @IBOutlet weak var mapView: MKMapView?
-    
-    @IBAction func handleControl(_ sender: UIPageControl){
-        
-    }
 }
 

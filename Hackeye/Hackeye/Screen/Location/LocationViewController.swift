@@ -46,9 +46,14 @@ class LocationViewController: UIViewController {
                 self?.locationService?.getLocation()
             }
             else {
-                // Switch to navigation view and load projects
+                // If already allowed location, load navigation page
+                appDelegate.navigationController = nav
                 appDelegate.window.rootViewController = nav
-                appDelegate.loadProjects(latitude, longitude)
+                
+                // Set delegate
+                (nav?.topViewController as? ProjectTableViewController)?.delegate = appDelegate
+                
+                appDelegate.loadProjects("na", "na")
             }
         }
         
@@ -60,12 +65,21 @@ class LocationViewController: UIViewController {
                 latitude = String(location.coordinate.latitude)
                 longitude = String(location.coordinate.longitude)
                 
-                // Switch to navigation view and load projects
+                // If already allowed location, load navigation page
+                appDelegate.navigationController = nav
                 appDelegate.window.rootViewController = nav
+                
+                // Get user's current location
+                appDelegate.locationService.getLocation()
+                
+                // Set delegate
+                (nav?.topViewController as? ProjectTableViewController)?.delegate = appDelegate
+                
                 appDelegate.loadProjects(latitude, longitude)
                 
-            case .failure(let error):
-                assertionFailure("Error getting the users location \(error)")
+            case .failure(let Error):
+                print(Error)
+                print("Can't get user location.")
             }
         }
     }

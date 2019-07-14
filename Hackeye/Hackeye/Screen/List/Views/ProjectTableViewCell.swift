@@ -23,6 +23,9 @@ class ProjectTableViewCell: UITableViewCell {
     // Set user profile link
     var userLink: String?
     
+    // Coordinate information
+    var coordinate : CLLocationCoordinate2D?
+    
     // Instantiate networkService and jsonDecoder
     let networkService2 = NetworkService()
     let jsonDecoder = JSONDecoder()
@@ -30,7 +33,6 @@ class ProjectTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -45,52 +47,123 @@ class ProjectTableViewCell: UITableViewCell {
     }
     
     // Configure views and fill them
-    func configure(_ viewModel: ProjectListViewModel, _ user: User, _ location: CLLocationCoordinate2D?, _ latitude: String, _ longitude: String) {
-        print(location)
-        // Set project details and image if available
-        if let projectImageLink = viewModel.imageUrl {
-            self.projectImage.load(projectImageLink)
+    func configure(with viewModel: ProjectListViewModel, _ latitude: String, _ longitude: String) {
+        
+        // Set JsonDecoder to snakecase
+        self.jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        // Get curr User id
+        let currUser = "users/" + String(viewModel.ownerId)
+        
+        // Get the current URL
+        let currentUrl2 = self.networkService2.setHackADayURL(currUser , 1, 1, "views")
+        
+        // Set profile image and label
+        let task2 = URLSession.shared.dataTask(with: currentUrl2) { (data, response, error) in
+            guard let responseData = data, error == nil else {
+                print(error?.localizedDescription ?? "Response Error")
+                return
+            }
+            
+            // Try to decode response data, and set user image, username
+            do {
+                let user = try self.jsonDecoder.decode(User.self, from: responseData)
+                
+                // Load user image and screen name
+                self.userProfile.load(user.imageUrl)
+                
+                DispatchQueue.main.async {
+                    self.userLabel.text = user.screenName.capitalizingFirstLetter()
+                }
+                
+                // Set user link member var
+                self.userLink = user.url
+                
+                // Get url for openGateData
+                guard let currentUrl3 = self.networkService2.setOpenCageDataUrl(user.location) else {
+                    return
+                }
+                
+                // Get user location via openCageData
+                let task3 = URLSession.shared.dataTask(with: currentUrl3) { (data, response, error) in
+                    guard let responseData = data, error == nil else {
+                        print(error?.localizedDescription ?? "Response Error")
+                        return
+                    }
+                    
+                    // Serialize response
+                    do {
+                        // Convert response to parsable object
+                        let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
+                        let jsonArray = jsonResponse!["results"] as? [Any] ?? []
+                        
+                        // If location is "na", or if array is empty, display "na" and return
+                        if jsonArray.isEmpty || latitude == "na" || longitude == "na" {
+                            // Set distance label
+                            DispatchQueue.main.async {
+                                self.projectDist.text = "N/A"
+                            }
+                            return
+                        }
+                        
+                        // Otherwise convert to object
+                        let jsonObject = jsonArray[0] as? [String : Any] ?? [:]
+                        let geometry = jsonObject["geometry"] as? [String : Double] ?? [:]
+                        
+                        // Get latitude and longitude
+                        let lat = geometry["lat"]!
+                        let lng = geometry["lng"]!
+                        
+                        // Convert parameters to double
+                        let latDbl = Double(latitude)
+                        let lngDbl = Double(longitude)
+                        
+                        // Calculate distance between user and project location
+                        let distance = self.getDistance(latDbl!, lngDbl!, lat, lng)
+                        
+                        // Set distance label
+                        DispatchQueue.main.async {
+                            let distInKm = String(Int(distance)) + " km"
+                            self.projectDist.text = distInKm
+                        }
+                        
+                        // Return CLLocationDegrees2D
+                        self.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+                    }
+                    catch let err{
+                        print("Error", err)
+                        
+                    }
+                }
+                task3.resume()
+                
+                // For reference - How to convert response to JSON object -> Array
+                // let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
+                // let jsonArray = jsonResponse!["projects"] as? [Any] ?? []
+ 
+            }
+            catch let err{
+                print("Error", err)
+            }
         }
-        // Set image radius to 5
-        self.projectImage.layer.cornerRadius = 5
+        // Run task
+        task2.resume()
+        
+        // Set project image if available
+        if let projectImageLink = viewModel.imageUrl {
+            projectImage.load(projectImageLink)
+        }
+        
+        projectImage.layer.cornerRadius = 5
         
         // Set project name
-        self.projectNameLabel.text = viewModel.name.capitalizingFirstLetter()
+        projectNameLabel.text = viewModel.name.capitalizingFirstLetter()
         
         // Set project summary
-        self.projectSummary.text = viewModel.summary
+        projectSummary.text = viewModel.summary
         
         // Give containerView a shadow
-        self.overlay.layer.cornerRadius = 5
-        
-        // Set user link member var
-        self.userLink = user.url
-        
-        // set user details
-        self.userLabel.text = user.screenName.capitalizingFirstLetter()
-        
-        // Load user image
-        self.userProfile.load(user.imageUrl)
-        
-        // If location is "na", or if array is empty, display "na" and return
-        if location == nil {
-            // Set distance label and return
-            self.projectDist.text = "N/A"
-            return
-        }
-        
-        // Convert parameters to double
-        let myLatDbl = Double(latitude)
-        let myLngDbl = Double(longitude)
-        let lat = Double(location!.latitude)
-        let lng = Double(location!.longitude)
-        
-        // Calculate distance between user and project location
-        let distance = self.getDistance(myLatDbl!, myLngDbl!, lat, lng)
-        
-        // Set distance label
-        let distInKm = String(Int(distance)) + " km"
-        self.projectDist.text = distInKm
+        overlay.layer.cornerRadius = 5
     }
     
     // Calculate distance given two earth coordinates

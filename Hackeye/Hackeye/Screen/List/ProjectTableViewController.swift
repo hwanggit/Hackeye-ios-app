@@ -11,20 +11,21 @@ import CoreLocation
 
 // Action protocol for generating details
 protocol ListActions: class {
-    func didTapCell(_ viewModel: ProjectListViewModel)
+    func didTapCell(_ viewModel: ProjectListViewModel, _ currLocation: CLLocationCoordinate2D?)
 }
 
 // Controller for project table
 class ProjectTableViewController: UITableViewController {
 
     // Generate array of project list models
-    var viewModels = [ProjectListViewModel]()
-    
-    // Generate array of users
-    var UserPop = [User]()
-    
-    // Locations
-    var UserLocations = [CLLocationCoordinate2D?]()
+    var viewModels = [ProjectListViewModel]() {
+        didSet {
+            DispatchQueue.main.async {
+                    // Reload data with delay
+                self.perform(#selector(self.reloadData), with: nil, afterDelay: 1.5)
+            }
+        }
+    }
     
     // Coordinates
     var currLatitude : String?
@@ -61,16 +62,12 @@ class ProjectTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Instantiate tableview cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectTableViewCell
-
+        
         // Instantiate view models
         let vm = viewModels[indexPath.row]
-
-        // Instantiate Users and location
-        let currUser = UserPop[indexPath.row]
-        let currLocation = UserLocations[indexPath.row]
         
         // Configure the cell...
-        cell.configure(vm, currUser, currLocation, self.currLatitude!, self.currLongitude!)
+        cell.configure(with: vm, self.currLatitude!, self.currLongitude!)
         
         return cell
     }
@@ -83,7 +80,6 @@ class ProjectTableViewController: UITableViewController {
         
         // Check if reached last cell
         if indexPath.row == viewModels.count - 1 {
-            
             // Get more if index is greater than 1
             if self.cellIndex > 1 {
                 
@@ -123,11 +119,17 @@ class ProjectTableViewController: UITableViewController {
 
     // Call function on click
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Instantiate tableview cell
+        let cell = tableView.cellForRow(at: indexPath) as? ProjectTableViewCell
+        
+        // Get current coordinate
+        let currCoordinate = cell?.coordinate
+
         // Get current project
         let currProject = viewModels[indexPath.row]
         
         // Set currProject
-        delegate?.didTapCell(currProject)
+        delegate?.didTapCell(currProject, currCoordinate)
     }
     
     // Manual Reload data
