@@ -2,6 +2,9 @@
 Find hardware enthusiasts and projects to collaborate on all over the globe!
 
 ### Step 1: Authorize your location
+                           |  
+:-------------------------:|:-------------------------:
+![](https://...Dark.png)  |  ![](https://...Ocean.png)
 <img style="float: left" height = "500" width = "300" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationpermission.png">
 <img style="float: left" height = "500" width = "300" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationallow.png">
 
