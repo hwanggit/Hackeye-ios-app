@@ -2,17 +2,10 @@
 Find hardware enthusiasts and projects to collaborate on all over the globe!
 
 ### Step 1: Authorize your location
-<div class="row">
-  <div class="column" style = "float: left; width: 33.33%; padding: 5px;">
-    <img height = "500" width = "300" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationpermission.png">
-  </div>
-  <div class="column" style = "float: left; width: 33.33%; padding: 5px;">
-    <img height = "500" width = "300" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationpermission.png">
-  </div>
-  <div class="column" style = "float: left; width: 33.33%; padding: 5px;">
-    <img height = "500" width = "300" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationpermission.png">
-  </div>
-</div>
+<figure class="half">
+      <img height = "500" width = "300" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationpermission.png">
+   <img height = "500" width = "300" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationpermission.png">
+</figure>
 
 <img style="float: left" height = "500" width = "300" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationallow.png">
 
