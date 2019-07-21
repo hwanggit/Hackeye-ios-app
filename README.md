@@ -1,6 +1,8 @@
 # Hackeye.io iPhone App 
 Find hardware enthusiasts and projects to collaborate on all over the globe!
 
+[See Demo](http://h-wang.me/views/demos.html)
+
 ## Step 1: Authorize your Location
 <figure class="half">
    <a href="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationpermission.png"><img height = "667" width = "375" src="https://github.com/hwanggit/Hackeye-ios-app/blob/master/Assets/UIViews/locationpermission.png"></a>
