@@ -1,7 +1,5 @@
-# Hackeye.io iPhone App 
-Find hardware enthusiasts and projects to collaborate on all over the globe!
-
-### [Demo](http://h-wang.me/views/demos.html)
+# Hackeye iPhone App 
+Find hardware enthusiasts and projects to collaborate on all over the globe! [Demo](http://h-wang.me/views/demos.html)
 
 ## Step 1: Authorize your Location
 <figure class="half">
